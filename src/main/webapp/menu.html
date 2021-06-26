@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="verzamelingForm">
+    <label for="verzamelingid" value="Verzameling van:"><input type="text" name="verzameling" id="verzamelingid"/></label>
+    <input type="button" id="verzamelingdata" value="Zoek Verzameling"/>
+</form>
+<script>
+    document.querySelector("#verzamelingdata").addEventListener("click", function() {
+        var naam = document.querySelector("#verzamelingid").value;
+
+        fetch("/restservices/verzameling/" + naam, {method:"GET"})
+            .then(response => Promise.all([response.status, response.json()]))
+            .then(function ([status, myJson]) {
+                if (status == 200) {
+                    console.log(myJson)
+                    var output = document.getElementById('log');
+                    var json = JSON.stringify(myJson);
+                    output.innerHTML += json
+                } else {
+                    console.log("status was " + status)
+                }
+            }).catch(error => console.log(error.message));
+    });
+
+
+    function uitloggen() {
+        sessionStorage.removeItem('myJWT');
+        window.location.href = "index.html"
+    }
+</script>
+<style>
+    html{
+        background-color: lightskyblue;
+    }
+    h1{
+        text-align: center;
+    }
+    label{
+        font-size: 24px;
+    }
+    form{
+        margin-left: 25%;
+        margin-right:25%;
+        width: 50%;
+        margin-top: 10%;
+        display:block;
+    }
+    input{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }</style>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+<div class="header">
+    <h1>Login</h1>
+</div>
+<form id="loginform">
+    <h1></h1>
+    <input type="text" name="username" placeholder="gebruikersnaam">
+    <input type="password" name="password" placeholder="wachtwoord">
+    <input type="button" value="login" id="loginbutton">
+</form>
+<script>
+    document.querySelector("#loginbutton").addEventListener("click", function(){
+        var formData = new FormData(document.querySelector("#loginform"));
+        var encData = new URLSearchParams(formData.entries());
+
+        fetch("/restservices/authentication", {method : "POST", body: encData})
+            .then(function(response){
+                if (response.ok) {
+                    window.location.replace("menu.html");
+                    return response.json();
+                }
+                else throw "Wrong username/password" && alert("Wrong username/passwordd")
+            })
+            .then(myJson => window.sessionStorage.setItem("myJWT", myJson.JWT))
+            .catch(e => console.log(e))
+    });
+</script>
+</body>
+</html>

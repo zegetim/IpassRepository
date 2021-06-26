@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="header">
+    <h1>Verzameling</h1>
+</div>
+<form id="itemForm">
+    <label for="naam">Naam: <input type="text" name="naam" id="naam"/></label>
+    <label for="soort">Soort: <input type="text" name="soort" id="soort"/></label>
+    <label for="aantal">Aantal: <input type="text" name="aantal" id="aantal"/></label>
+    <input type="button" id="addItem" value="Voeg item toe" />
+</form>
+<script>
+    document.querySelector("#addItem").addEventListener("click", function(){
+        var formData = new FormData(document.querySelector("#itemForm"));
+        var encData = new URLSearchParams(formData.entries());
+
+        fetch("/restservices/item", {method:"PUT", body: encData, headers: { 'Authorization': 'Bearer '+window.sessionStorage.getItem("myJWT")}})
+            .then(response => Promise.all([response.status, response.json()]))
+            .then(function ([status, myJson]) {
+                if (status == 200) {
+                    console.log(myJson)
+                    alert("Item toegevoegd")
+                } else {
+                    console.log("status was " + status)
+                }
+            }).catch(error => console.log(error.message));
+    });
+</script>
+</body>
+<style>
+    html{
+    background-color: lightskyblue;
+}
+h1{
+    text-align: center;
+}
+label{
+    font-size: 24px;
+}
+form{
+    margin-left: 25%;
+    margin-right:25%;
+    width: 50%;
+    margin-top: 10%;
+    display:block;
+}
+input{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}</style>
+</html>
