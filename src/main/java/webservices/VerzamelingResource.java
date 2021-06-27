@@ -3,8 +3,6 @@ package webservices;
 import domain.Verzameling;
 import domain.VerzamelingManager;
 
-import javax.json.Json;
-import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -30,13 +28,4 @@ public class VerzamelingResource {
     public Response getVerzamelingen() {
         return Response.ok(VerzamelingManager.getInstance().getAlleVerzamelingen()).build();
     }
-//    @GET
-//    @Path("{naam}")
-//    @Produces("application/json")
-//    public String getCollectietest(@PathParam("naam") String naam) {
-//        JsonObjectBuilder job = Json.createObjectBuilder();
-//        Verzameling a = VerzamelingManager.getInstance().getNaamVerzameling(naam);
-//        job.add("naam:", a.getNaamVerzameling());
-//        return job.build().toString();
-//    }
 }

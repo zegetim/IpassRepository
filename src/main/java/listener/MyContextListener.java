@@ -1,7 +1,5 @@
 package listener;
 
-import domain.ItemManager;
-import domain.Verzameling;
 import domain.VerzamelingManager;
 import security.SecurityManager;
 

@@ -9,12 +9,13 @@
 <h1>Verzamel systeem</h1>
 </div>
 <form id="verzamelingForm">
-    <label for="verzamelingid" value="Verzameling van:"><input type="text" name="verzameling" id="verzamelingid" class="form"/></label>
+    <label for="verzamelingid" value="Verzameling van:"><input type="text" name="verzameling" id="verzamelingid" class="form" placeholder="verzameling"/></label>
     <input type="button" id="verzamelingdata" value="Zoek Verzameling" class="form"/>
 </form>
 <input type="button" value="Voeg verzameling toe" class="menu" id="addverzameling" onclick="location.href='verzameling.html'">
-<input type="button" value="Voeg item toe aan collectie" class="menu" id="additem" onclick="location.href='item.html'">
+<input type="button" value="Voeg item toe aan verzameling" class="menu" id="additem" onclick="location.href='item.html'">
 <input type="button" value="Bewerk item" class="menu" id="updateitem" onclick="location.href='updateitem.html'">
+<input type="button" value="Verwijder item" class="menu" id="removeitem" onclick="location.href='removeitem.html'">
 <input type="button" value="uitloggen" class="menu" id="uitloggen" onclick="uitloggen();">
 <p id="log">
 </p>
@@ -27,16 +28,9 @@
             .then(function ([status, myJson]) {
                 if (status == 200) {
                     console.log(myJson)
-                    var myJson2 ='{ "naam":"naam","soort":"naam","aantal":6 }';
-                    // var output = document.getElementById('log');
-                    // var json = JSON.stringify(myJson)
-                    // output.innerHTML += json
-                    var obj = JSON.parse(myJson);
-
-                    document.getElementById("log").innerHTML =
-                        // obj.naamVerzameling + ", test "
-                        obj.items + ", test ";
-                        // + obj.aantal;
+                    var output = document.getElementById('log');
+                    var json = JSON.stringify(myJson)
+                    output.innerHTML += json
                 } else {
                     console.log("status was " + status)
                 }
@@ -75,25 +69,31 @@
         position: absolute;
         left: 0;
         top: 112px;
-        width: 20%;
+        width: 15%;
     }
     input[id="additem"]{
         position: absolute;
-        left: 250px;
+        left: 200px;
         top: 112px;
-        width: 20%;
+        width: 15%;
     }
     input[id="updateitem"]{
         position: absolute;
-        left: 500px;
+        left: 400px;
         top: 112px;
-        width: 20%;
+        width: 15%;
+    }
+    input[id="removeitem"]{
+        position: absolute;
+        left: 600px;
+        top: 112px;
+        width: 15%;
     }
     input[id="uitloggen"]{
         position: absolute;
         top:112px;
         right: 0;
-        width: 20%;
+        width: 15%;
     }
     input{
         width: 100%;

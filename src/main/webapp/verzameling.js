@@ -10,7 +10,7 @@ document.querySelector("#addVerzameling").addEventListener("click", function(){
                 alert("Verzameling toegevoegd")
             } else {
                 console.log("status was " + status)
-                alert("Verzameling toegevoegd")
+                alert("niet gelukt")
             }
         }).catch(error => console.log(error.message));
 });

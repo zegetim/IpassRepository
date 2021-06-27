@@ -26,9 +26,10 @@
                 if (status == 200) {
                     console.log(myJson)
                     alert("Item toegevoegd")
+                    location.replace("menu.html")
                 } else {
                     console.log("status was " + status)
-                    alert(status)
+                    alert("niet gelukt")
                 }
             }).catch(error => console.log(error.message));
     });

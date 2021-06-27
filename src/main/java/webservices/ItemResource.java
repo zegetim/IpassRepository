@@ -1,13 +1,9 @@
 package webservices;
 
 import domain.Item;
-import domain.ItemManager;
-import domain.Verzameling;
 import domain.VerzamelingManager;
 
 import javax.annotation.security.RolesAllowed;
-import javax.json.Json;
-import javax.json.JsonObjectBuilder;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -26,17 +22,18 @@ public class ItemResource {
             if (result != null) {
                 return Response.ok(result).build();
             }
-            return Response.status(Response.Status.CONFLICT).entity(new AbstractMap.SimpleEntry<>("message", "could not add knikker for some unknown reason")).build();
+            return Response.status(Response.Status.CONFLICT).entity(new AbstractMap.SimpleEntry<>("message", "could not add item for some unknown reason")).build();
         }
-        return Response.status(Response.Status.CONFLICT).entity(new AbstractMap.SimpleEntry<>("message", "could not add knikker")).build();
+        return Response.status(Response.Status.CONFLICT).entity(new AbstractMap.SimpleEntry<>("message", "could not add item")).build();
     }
     @GET
     @Produces("application/json")
     public Response getItems() {
         return Response.ok(VerzamelingManager.getInstance().getAlleItems()).build();
     }
-//    @RolesAllowed("eigenaar")
+
     @DELETE
+    @RolesAllowed("admin")
     @Path("{naam}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response deleteItem(@PathParam("naam") String naam){
