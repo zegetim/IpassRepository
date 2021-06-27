@@ -1,5 +1,5 @@
 html{
-    background-color: lightskyblue;
+    background-color: white;
 }
 h1{
     text-align: center;
@@ -24,4 +24,11 @@ input{
 }
 input:hover[type="button"]{
     background-color: lightgray;
+}
+div[class="header"] {
+    padding: 20px;
+    background: lightskyblue;
+}
+body{
+    margin: 0;
 }

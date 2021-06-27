@@ -5,13 +5,16 @@
     <title>Title</title>
 </head>
 <body>
+<div class="header">
+<h1>Verzamel systeem</h1>
+</div>
 <form id="verzamelingForm">
-    <label for="verzamelingid" value="Verzameling van:"><input type="text" name="verzameling" id="verzamelingid"/></label>
-    <input type="button" id="verzamelingdata" value="Zoek Verzameling"/>
+    <label for="verzamelingid" value="Verzameling van:"><input type="text" name="verzameling" id="verzamelingid" class="form"/></label>
+    <input type="button" id="verzamelingdata" value="Zoek Verzameling" class="form"/>
 </form>
 <input type="button" value="Voeg verzameling toe" class="menu" id="addverzameling" onclick="location.href='verzameling.html'">
 <input type="button" value="Voeg item toe aan collectie" class="menu" id="additem" onclick="location.href='item.html'">
-<input type="button" value="Bewerk item" class="menu" id="updateitem" onclick="location.href='updateknikker.html'">
+<input type="button" value="Bewerk item" class="menu" id="updateitem" onclick="location.href='updateitem.html'">
 <input type="button" value="uitloggen" class="menu" id="uitloggen" onclick="uitloggen();">
 <p id="log">
 </p>
@@ -47,8 +50,13 @@
     }
 </script>
 <style>
+    div[class="header"] {
+        padding: 20px;
+        background: lightskyblue;
+
+    }
     html{
-        background-color: lightskyblue;
+        background-color: white;
     }
     h1{
         text-align: center;
@@ -63,9 +71,29 @@
         margin-top: 10%;
         display:block;
     }
-    input[class="menu"]{
-        postion:absolute;
-        top:0;
+    input[id="addverzameling"]{
+        position: absolute;
+        left: 0;
+        top: 112px;
+        width: 20%;
+    }
+    input[id="additem"]{
+        position: absolute;
+        left: 250px;
+        top: 112px;
+        width: 20%;
+    }
+    input[id="updateitem"]{
+        position: absolute;
+        left: 500px;
+        top: 112px;
+        width: 20%;
+    }
+    input[id="uitloggen"]{
+        position: absolute;
+        top:112px;
+        right: 0;
+        width: 20%;
     }
     input{
         width: 100%;
@@ -77,6 +105,9 @@
     }
     input:hover[type="button"]{
         background-color: lightgray;
+    }
+    body{
+        margin: 0;
     }
 </style>
 </body>

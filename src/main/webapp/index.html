@@ -25,7 +25,7 @@
                     window.location.replace("menu.html");
                     return response.json();
                 }
-                else throw "Wrong username/password" && alert("Wrong username/passwordd")
+                else throw "Wrong username/password" && alert("Wrong username/password")
             })
             .then(myJson => window.sessionStorage.setItem("myJWT", myJson.JWT))
             .catch(e => console.log(e))

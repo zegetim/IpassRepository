@@ -5,10 +5,13 @@
     <title>Title</title>
 </head>
 <body>
+<div class="header">
+    <h1>Verzamel systeem</h1>
+</div>
 <form id="updateItemForm">
     <label for="naam">Naam: <input type="text" name="naam" id="naam"/></label>
     <label for="soort">Soort: <input type="text" name="soort" id="soort"/></label>
-    <label for="aantal">AANTAL: <input type="text" name="aantal" id="aantal"/></label>
+    <label for="aantal">Aantal: <input type="text" name="aantal" id="aantal"/></label>
     <input type="button" id="updateItem" value="Update Item" />
 </form>
 <script>
@@ -29,5 +32,41 @@
             }).catch(error => console.log(error.message));
     });
 </script>
+<style>
+    html{
+        background-color: white;
+    }
+    h1{
+        text-align: center;
+    }
+    label{
+        font-size: 24px;
+    }
+    form{
+        margin-left: 25%;
+        margin-right:25%;
+        width: 50%;
+        margin-top: 10%;
+        display:block;
+    }
+    input{
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    input:hover[type="button"]{
+        background-color: lightgray;
+    }
+    div[class="header"] {
+        padding: 20px;
+        background: lightskyblue;
+    }
+    body{
+        margin: 0;
+    }
+</style>
 </body>
 </html>
