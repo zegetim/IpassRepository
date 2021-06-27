@@ -8,7 +8,7 @@ public class Item {
     String naam;
     String soort;
     int aantal;
-    private ArrayList<String> items;
+    private static ArrayList<String> items = new ArrayList<>();
 
     public Item(String naam, String soort, int aantal) {
         this.naam = naam;

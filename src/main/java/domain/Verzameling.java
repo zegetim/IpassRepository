@@ -10,6 +10,7 @@ public class Verzameling {
 
     public Verzameling(String naamVerzameling) {
         this.naamVerzameling = naamVerzameling;
+        items = new ArrayList<>();
     }
 
     public String getNaamVerzameling() {
@@ -26,6 +27,9 @@ public class Verzameling {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+    public void addItem(Item item){
+        items.add(item);
     }
 
 }

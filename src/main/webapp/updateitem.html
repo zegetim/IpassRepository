@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="updateItemForm">
+    <label for="naam">Naam: <input type="text" name="naam" id="naam"/></label>
+    <label for="soort">Soort: <input type="text" name="soort" id="soort"/></label>
+    <label for="aantal">AANTAL: <input type="text" name="aantal" id="aantal"/></label>
+    <input type="button" id="updateItem" value="Update Item" />
+</form>
+<script>
+    document.querySelector("#updateItem").addEventListener("click", function(){
+        var formData = new FormData(document.querySelector("#updateItemForm"));
+        var encData = new URLSearchParams(formData.entries());
+        var naam = document.querySelector("#naam").value;
+
+        fetch("/restservices/item/" + naam, {method:"PUT", body: encData})
+            .then(response => Promise.all([response.status, response.json()]))
+            .then(function ([status, myJson]) {
+                if (status == 200) {
+                    console.log(myJson)
+                    alert("Item bewerkt")
+                } else {
+                    console.log("status was " + status)
+                }
+            }).catch(error => console.log(error.message));
+    });
+</script>
+</body>
+</html>

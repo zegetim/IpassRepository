@@ -9,6 +9,7 @@
     <h1>Verzameling</h1>
 </div>
 <form id="itemForm">
+    <label for="verzameling">Verzameling: <input type="text" name="verzameling" id="verzameling"/></label>
     <label for="naam">Naam: <input type="text" name="naam" id="naam"/></label>
     <label for="soort">Soort: <input type="text" name="soort" id="soort"/></label>
     <label for="aantal">Aantal: <input type="text" name="aantal" id="aantal"/></label>
@@ -19,7 +20,7 @@
         var formData = new FormData(document.querySelector("#itemForm"));
         var encData = new URLSearchParams(formData.entries());
 
-        fetch("/restservices/item", {method:"PUT", body: encData, headers: { 'Authorization': 'Bearer '+window.sessionStorage.getItem("myJWT")}})
+        fetch("/restservices/item", {method:"PUT", body: encData})
             .then(response => Promise.all([response.status, response.json()]))
             .then(function ([status, myJson]) {
                 if (status == 200) {
@@ -27,6 +28,7 @@
                     alert("Item toegevoegd")
                 } else {
                     console.log("status was " + status)
+                    alert(status)
                 }
             }).catch(error => console.log(error.message));
     });
@@ -56,5 +58,9 @@ input{
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}</style>
+}
+    input:hover[type="button"]{
+        background-color: lightgray;
+    }
+</style>
 </html>

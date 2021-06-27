@@ -17,7 +17,8 @@ public class MyContextListener implements ServletContextListener {
         SecurityManager.getInstance().addUser("Tim", "test", "test", "eigenaar");
         SecurityManager.getInstance().addUser("Test","test2", "test","admin");
         VerzamelingManager.getInstance().addVerzameling("Verzameling1");
-//        ItemManager.getInstance().addItem(null,"test","test",1);
+        VerzamelingManager.getInstance().addItem("Verzameling1","test","test",1);
+        VerzamelingManager.getInstance().addVerzameling("Verzameling2");
     }
 
     @Override

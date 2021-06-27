@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="deleteItemForm">
+    <label for="deleteid">Verwijder item met naam: <input type="text" name="naam" id="deleteid"/></label>
+    <input type="button" id="deleteItem" value="Verwijder Item" />
+</form>
+<script>
+    document.querySelector("#deleteItem").addEventListener("click", function(){
+        var naam = document.querySelector("#deleteid").value;
+
+        fetch("/restservices/item/" + naam, {method:"DELETE", headers: {
+                Authorization: "Bearer " + window.sessionStorage.getItem("myJWT"),
+            },})
+            .then(function (response) {
+                if (response.ok){
+                    console.log("Item verwijderd")
+                    alert("Item verwijderd")
+                }else if (response.status == 404) {
+                    console.log('Item niet gevonden')
+                }
+                else if (response.status == 403) {
+                    console.log("niet toegestaan")
+                    alert("niet toegestaan")
+                }
+                else{
+                    console.log("iets anders")
+                }
+            })
+    });
+    function uitloggen() {
+        sessionStorage.removeItem('myJWT');
+        window.location.href = "index.html"
+    }
+</script>
+</body>
+</html>

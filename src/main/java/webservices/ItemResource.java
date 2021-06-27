@@ -21,8 +21,8 @@ public class ItemResource {
                                @FormParam("naam") String naam,
                                @FormParam("soort") String soort,
                                @FormParam("aantal") int aantal) {
-        if (ItemManager.getInstance().addItem(verzameling,naam, soort, aantal)) {
-            Item result = ItemManager.getInstance().getItemByName(naam);
+        if (VerzamelingManager.getInstance().addItem(verzameling,naam, soort, aantal)) {
+            Item result = VerzamelingManager.getInstance().getItemByName(naam);
             if (result != null) {
                 return Response.ok(result).build();
             }
@@ -33,15 +33,23 @@ public class ItemResource {
     @GET
     @Produces("application/json")
     public Response getItems() {
-        return Response.ok(ItemManager.getInstance().getAlleItems()).build();
+        return Response.ok(VerzamelingManager.getInstance().getAlleItems()).build();
     }
-    @DELETE
 //    @RolesAllowed("eigenaar")
+    @DELETE
     @Path("{naam}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response deleteKnikker(@PathParam("naam") String naam){
-        return ItemManager.getInstance().removeItem(naam)
+    public Response deleteItem(@PathParam("naam") String naam){
+        return VerzamelingManager.getInstance().removeItem(naam)
                 ? Response.ok().build()
                 : Response.status(Response.Status.NOT_FOUND).build();
+    }
+    @PUT
+    @Path("{naam}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateItem(@PathParam("naam") String naam, @FormParam("soort") String soort,@FormParam("aantal") int aantal){
+        Item item = VerzamelingManager.getInstance().updateItem(new Item(naam, soort, aantal));
+        if(item==null) return Response.status(Response.Status.EXPECTATION_FAILED).entity(new AbstractMap.SimpleEntry<>("error","error")).build();
+        return Response.ok(VerzamelingManager.getInstance().getItemByName(naam)).build();
     }
 }
